@@ -29,8 +29,16 @@ import {
     Footer
 } from './styles';
 
+import { useNavigation } from '@react-navigation/core';
+
 
 export function CarDetails() {
+    const navigation = useNavigation();
+
+    function handleConfirmRental() {
+        navigation.navigate("Schedulling");
+    }
+
     return (
         <Container>
             <Header>
@@ -71,7 +79,7 @@ export function CarDetails() {
 
             </Content>
             <Footer>
-                <Button title="Confirmar" onPress={() => { }} />
+                <Button title="Escolher período do aluguel" onPress={handleConfirmRental} />
             </Footer>
         </Container>
     );
