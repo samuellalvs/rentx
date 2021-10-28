@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/core';
 import Animated, { useAnimatedScrollHandler, useSharedValue, useAnimatedStyle, interpolate, Extrapolate } from 'react-native-reanimated';
-import { StatusBar } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 import { Accessory } from '../../components/Accessory';
@@ -86,7 +86,7 @@ export function CarDetails() {
             />
 
             <Animated.View
-                style={[headerStyleAnimation, { backgroundColor: theme.colors.background_secondary }]}
+                style={[headerStyleAnimation, styles.header, { backgroundColor: theme.colors.background_secondary }]}
             >
 
                 <Header>
@@ -104,7 +104,7 @@ export function CarDetails() {
             <Animated.ScrollView
                 contentContainerStyle={{
                     paddingHorizontal: 24,
-                    paddingTop: getStatusBarHeight(),
+                    paddingTop: getStatusBarHeight() + 160,
 
                 }}
                 showsVerticalScrollIndicator={false}
@@ -150,3 +150,11 @@ export function CarDetails() {
         </Container>
     );
 }
+
+const styles = StyleSheet.create({
+    header: {
+        position: 'absolute',
+        overflow: 'hidden',
+        zIndex: 1
+    }
+})
