@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TextInputProps } from 'react-native';
 import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 import {
     Container,
@@ -9,20 +10,26 @@ import {
     IconContainer
 } from './styles';
 
+
 interface Props extends TextInputProps {
     iconName: React.ComponentProps<typeof Feather>['name'];
     value?: string;
 }
 
-export function Input({
+export function PasswordInput({
     iconName,
     value,
     ...rest
 }: Props) {
+    const [isPasswordVisible, setIsPasswordVisible] = useState(true);
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
 
     const theme = useTheme();
+
+    function handlePasswordVisibilityChange() {
+        setIsPasswordVisible(oldState => !oldState);
+    }
 
     function handleInputFocus() {
         setIsFocused(true)
@@ -32,7 +39,6 @@ export function Input({
         setIsFocused(false);
         setIsFilled(!!value);
     }
-
     return (
         <Container isFocused={isFocused}>
             <IconContainer>
@@ -46,8 +52,20 @@ export function Input({
             <InputText
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
+                secureTextEntry={isPasswordVisible}
                 {...rest}
             />
+
+
+            <BorderlessButton onPress={handlePasswordVisibilityChange}>
+                <IconContainer>
+                    <Feather
+                        name={isPasswordVisible ? "eye" : "eye-off"}
+                        size={24}
+                        color={theme.colors.text_detail}
+                    />
+                </IconContainer>
+            </BorderlessButton>
         </Container>
     );
 }
