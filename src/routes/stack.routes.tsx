@@ -4,11 +4,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Home } from '../screens/Home';
 import { CarDetails } from '../screens/CarDetails';
 import { Schedulling } from '../screens/Schedulling';
-import { SchedullingComplete } from '../screens/SchedullingComplete';
+import { Confirmation } from '../screens/Confirmation';
 import { SchedullingDetails } from '../screens/SchedullingDetails';
 import { MyCars } from '../screens/MyCars';
 import { Splash } from '../screens/Splash';
 import { SignIn } from '../screens/SignIn';
+import { SignUpFirstStep } from '../screens/SignUp/SignUpFirstStep';
+import { SignUpSecondStep } from '../screens/SignUp/SignUpSecondStep';
 
 
 const { Navigator, Screen } = createNativeStackNavigator();
@@ -37,8 +39,8 @@ export function StackRoutes() {
                 component={Schedulling}
             />
             <Screen
-                name="SchedullingComplete"
-                component={SchedullingComplete}
+                name="Confirmation"
+                component={Confirmation}
             />
             <Screen
                 name="SchedullingDetails"
@@ -58,6 +60,16 @@ export function StackRoutes() {
             <Screen
                 name="SignIn"
                 component={SignIn}
+            />
+
+            <Screen
+                name="SignUpFirstStep"
+                component={SignUpFirstStep}
+            />
+
+            <Screen
+                name="SignUpSecondStep"
+                component={SignUpSecondStep}
             />
         </Navigator>
     )

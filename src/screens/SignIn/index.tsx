@@ -23,12 +23,15 @@ import {
     Footer,
     Form
 } from './styles';
+import { useNavigation } from '@react-navigation/core';
 
 export function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const theme = useTheme();
+
+    const navigation = useNavigation();
 
     async function handleSignIn() {
         try {
@@ -51,6 +54,10 @@ export function SignIn() {
                 );
             }
         }
+    }
+
+    function handleNewAccount() {
+        navigation.navigate('SignUpFirstStep');
     }
 
     return (
@@ -108,8 +115,8 @@ export function SignIn() {
                         <Button
                             title="Criar conta gratuita"
                             color={theme.colors.background_secondary}
-                            onPress={() => { }}
-                            enabled={false}
+                            onPress={handleNewAccount}
+                            enabled={true}
                             loading={false}
                             light={true}
                         />
