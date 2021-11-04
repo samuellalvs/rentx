@@ -5,11 +5,11 @@ import HomeSvg from '../assets/home.svg';
 import PeopleSvg from '../assets/people.svg';
 import CarSvg from '../assets/car.svg';
 
-import { Home } from '../screens/Home';
 import { MyCars } from '../screens/MyCars';
 import { AppStackRoutes } from './app.stack.routes';
 import { useTheme } from 'styled-components';
 import { Platform } from 'react-native';
+import { Profile } from '../screens/Profile';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -51,7 +51,7 @@ export function AppTabRoutes() {
 
             <Screen
                 name="Profile"
-                component={Home}
+                component={Profile}
                 options={{
                     tabBarIcon: (({ color }) => {
                         return <PeopleSvg width={24} height={24} fill={color} />
