@@ -28,6 +28,7 @@ import {
     Section
 } from './styles';
 import { Button } from '../../components/Button';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 
 export function Profile() {
@@ -42,12 +43,19 @@ export function Profile() {
 
     const navigation = useNavigation();
 
+    const netInfo = useNetInfo();
+
     function handleBack() {
         navigation.goBack();
     }
 
     function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit') {
-        setOption(optionSelected);
+        if (netInfo.isConnected === false && optionSelected === 'passwordEdit') {
+            Alert.alert('Você está offline', 'Para mudar a senha, conecte-se a Internet');
+        } else {
+            setOption(optionSelected);
+        }
+
     }
 
     async function handleSelectAvatar() {
